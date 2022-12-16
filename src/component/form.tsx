@@ -1,9 +1,13 @@
 import { useState } from "react";
+import { sanitizeInput } from "./sanitizeInput";
 
 const Form = () => {
-  const [inputData, setInputData] = useState();
+  const [inputData, setInputData] = useState("");
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    const sanitizedData = sanitizeInput(inputData);
+    alert(sanitizedData);
+  };
 
   return (
     <div className="w-full max-w-xs">
@@ -20,13 +24,14 @@ const Form = () => {
             type="text"
             placeholder="name"
             value={inputData}
+            onChange={(e) => setInputData(e.target.value)}
           />
         </div>
 
         <div className="flex items-center justify-between">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="button"
+            type="submit"
           >
             Submit
           </button>
